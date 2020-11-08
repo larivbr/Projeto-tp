@@ -14,7 +14,7 @@ class Conta{
       void setUser(const Usuario &);
       void setSenha(const int&);
       void setLogin(const long int&);
-      void setNumero_Do_Cartao(const long int &);
+      void setNumeroDoCartao(const long int &);
       void setSaldo(const float &);
 
       Usuario getUser()const;

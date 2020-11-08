@@ -1,10 +1,10 @@
 #include "..\Header Files\Conta.h"
 
-Conta::Conta(Usuario User,const int &senha,const long int & login,const float & saldo, const long int & NumeroDoCartao){
-  setUser(User);
+Conta::Conta(Usuario user,const int &senha,const long int & login,const float & saldo, const long int & numeroDoCartao){
+  setUser(user);
   setSenha(senha);
   setLogin(login);
-  setNumero_Do_Cartao(NumeroDoCartao);
+  setNumeroDoCartao(numeroDoCartao);
   setSaldo(saldo);
 }
 
@@ -18,7 +18,7 @@ void Conta::setSenha(const int & senha){
 void Conta::setLogin(const long int & login){
   this->login = login;
 }
-void Conta::setNumero_Do_Cartao(const long int & numeroDoCartao){
+void Conta::setNumeroDoCartao(const long int & numeroDoCartao){
   this->numeroDoCartao = numeroDoCartao;
 }
 void Conta::setSaldo(const float & saldo){
@@ -32,7 +32,7 @@ Usuario Conta::getUser()const{
 int Conta::getSenha()const{
   return senha;
 }
-//Erwerton Olha esta maneira de retorna o endereço
+//Erwerton observe está maneira de retorna o endereço
 /*
 string Conta::getEnderecoDoUsuario()const{
   return enderecoDoUsuario.rua + "," + enderecoDoUsuario.CEP + "," +enderecoDoUsuario.cidade +","+enderecoDoUsuario.estado;
@@ -56,15 +56,19 @@ bool Conta::depositar(float valorDoDeposito){
   if(valorDoDeposito < 0){
     return false;
   }
-  saldo+=valorDoDeposito;
+  saldo += valorDoDeposito;
   return true;
 }
 bool Conta::transferencia(float valorDaTransferencia, int contaDeDestino){
     //implementar a verificação se a conta de destino existe
-    //sem ideias atéo momento
+    //sem ideias até o momento
     return true;
 }
 void Conta::imprimir()const{
+  //Implemente a função imprimir da class Usuário
+  //Usuario::user.imprimir();
+  cout<<"Login: "<<login<<endl;
+  cout<<"Cartao: "<<numeroDoCartao<<endl;
   cout<<"Saldo: "<<saldo<<endl;
 }
 Conta::~Conta(){

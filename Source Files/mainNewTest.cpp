@@ -4,5 +4,6 @@ using namespace std;
 #include "..\Resource Files\Conta.cpp"
 //#include "..\Resource Files\Usuario.cpp"
 int main(){
+  //Erro falta de implmentação do Usuario.cpp
 
 }
