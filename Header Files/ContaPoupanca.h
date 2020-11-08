@@ -3,7 +3,8 @@ class ContaPoupanca:public Conta{
     public:
       ContaPoupanca(const string & = "0",const long long & = 0,const int & = 0,const float & = 0,const Endereco & =  {"0","0","0","0"});
       bool cadastroUsuario();
-       bool salvarDados();
+      bool salvarDados();
+      void JurosExtra();
 };
 bool ContaPoupanca::salvarDados(){
    return true;
