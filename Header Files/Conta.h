@@ -1,34 +1,36 @@
+#include "..\Header Files\Usuario.h"
 #ifndef _CONTA_H
 #define _CONTA_H
-struct Endereco{
-    string rua;
-    string CEP;
-    string cidade;
-    string estado;
-};
 class Conta{
   private:
-      string nomeDoUsuario;
-      long long CPF;
-      int idade;
-      Endereco enderecoDoUsuario;
+      Usuario user;
+      int senha; //senha feita apenas de numeros
+      long int login // login apenas compostos por numeros
       float saldo;
+      long int NumeroDoCartao;
   public:
-      Conta(const string & = "0",const long long & = 0,const int & = 0,const float & = 0,const Endereco & =  {"0","0","0","0"});
-      void setNomeDoUsuario(const string &);
-      void setCPF(const long long &);
-      void setIdade(const int &);
-      void setEnderecoDoUsuario(const Endereco &);
+      Conta(const Usuario & = &{"0",0,0,{"0","0","0","0"}},const int&  = 0,const long int &= 0,const float & = 0,const long int &= 0);
+
+      void setUser(const Usuario &);
+      void setSenha(const int&);
+      void setLogin(const long int&);
+      void setNumero_Do_Cartao(const long int &);
       void setSaldo(const float &);
-      long long getCPF()const;
-      int getIdade()const;
-      string getEnderecoDoUsuario()const;
+
+      Usuario getUser()const;
+      int getSenha()const;
+      long int getLogin()const;
       float getSaldo()const;
-      virtual bool cadastroUsuario() = 0;
-      virtual bool salvarDados() = 0;
+      long int getNumero_Do_Cartao() const;
+
       bool sacar(float);
       bool depositar(float);
+      bool transferencia(float);
+
       void imprimir()const;
+
+      bool salvarDados();
+      bool cadastroUsuario();
       ~Conta();
 };
 #endif //_Conta_H

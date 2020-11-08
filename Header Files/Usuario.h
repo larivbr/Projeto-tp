@@ -6,26 +6,26 @@ struct Endereco{
     string cidade;
     string estado;
 };
-
 class Usuario{
-private:
-    long int Numero_Do_Cartao;
-    long int CPF;
-    long int login // login apenas compostos por numeros
-    int senha; //senha feita apenas de numeros
-    Endereco enderecoDoUsuario; // tu implementa essa aqui no construtor, valymr.
-    //Eu não sei como tu fez para implementar no teu codigo
-    //precisamos intanciar o objeto tbm, lembrando que o mesmo usuario pode ter uma conta corrente e uma poupança
-public:
-    Usuario(long int=0, long int=0, long int=0,int=0);
-    void setNumero_Do_Cartao(long int);
-    long int getNumero_Do_Cartao();
-    void setCPF(long int);
-    long int getCPF();
-    void setLogin(long int);
-    long int getLogin();
-    void setSenha(int);
-    int getSenha();
+  private:
+      string nomeDoUsuario;
+      int idade;
+      long int CPF;
+      Endereco enderecoDoUsuario; // tu implementa essa aqui no construtor, valymr.
+      //Eu não sei como tu fez para implementar no teu codigo
+      //precisamos intanciar o objeto tbm, lembrando que o mesmo usuario pode ter uma conta corrente e uma poupança
+  public:
+
+      Usuario(const string & ="0",const int &= 0,const long int &= 0,/*Recurso c++ 11 permite iniciar structs dessa forma*/const Endereco & = &{"0","0","0","0"});
+      void setIdade(const int &);
+      void setCPF(const long long &);
+      void setEnderecoDoUsuario(const Endereco &);
+      void setNomeDoUsuario(const string &);
+
+      string getNomeDoUsuario()const();
+      long int getCPF()const;
+      int getIdade()const;
+      string getEnderecoDoUsuario()const;
 
 };
 
