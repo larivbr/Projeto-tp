@@ -1,39 +1,50 @@
 #include "..\Header Files\Conta.h"
 
-Conta::Conta(const string & nomeDoUsuario,const long long & CPF,const int & idade, const float & saldo, const Endereco & enderecoDoUsuario){
-  setNomeDoUsuario(nomeDoUsuario);
-  setCPF(CPF);
-  setIdade(idade);
+Conta::Conta(Usuario User,const int &senha,const long int & login,const float & saldo, const long int & NumeroDoCartao){
+  setUser(User);
+  setSenha(senha);
+  setLogin(login);
+  setNumero_Do_Cartao(NumeroDoCartao);
   setSaldo(saldo);
-  setEnderecoDoUsuario(enderecoDoUsuario);
 }
-void Conta::setNomeDoUsuario(const string & nomeDoUsuario){
-  this->nomeDoUsuario = nomeDoUsuario;
+
+
+void Conta::setUser(const Usuario& user){
+  this->user = user;
 }
-void Conta::setCPF(const long long & CPF){
-  this->CPF = CPF;
+void Conta::setSenha(const int & senha){
+  this->senha = senha;
 }
-void Conta::setIdade(const int & idade){
-  this->idade = idade;
+void Conta::setLogin(const long int & login){
+  this->login = login;
 }
-void Conta::setEnderecoDoUsuario(const Endereco & enderecoDoUsuario){
-  this->enderecoDoUsuario = enderecoDoUsuario;
+void Conta::setNumero_Do_Cartao(const long int & numeroDoCartao){
+  this->numeroDoCartao = numeroDoCartao;
 }
 void Conta::setSaldo(const float & saldo){
   this->saldo = saldo;
 }
-long long Conta::getCPF()const{
-  return CPF;
+
+
+Usuario Conta::getUser()const{
+  return user;
 }
-int Conta::getIdade()const{
-  return idade;
+int Conta::getSenha()const{
+  return senha;
 }
+//Erwerton Olha esta maneira de retorna o endereço
+/*
 string Conta::getEnderecoDoUsuario()const{
   return enderecoDoUsuario.rua + "," + enderecoDoUsuario.CEP + "," +enderecoDoUsuario.cidade +","+enderecoDoUsuario.estado;
 }
-float Conta::getSaldo()const{
-  return saldo;
+*/
+long int Conta::getLogin()const{
+  return login;
 }
+long int Conta::getNumeroDoCartao()const{
+  return numeroDoCartao;
+}
+
 bool Conta::sacar(float valorDoSaque){
   if(valorDoSaque > saldo){
     return false;
@@ -48,13 +59,13 @@ bool Conta::depositar(float valorDoDeposito){
   saldo+=valorDoDeposito;
   return true;
 }
+bool Conta::transferencia(float valorDaTransferencia, int contaDeDestino){
+    //implementar a verificação se a conta de destino existe
+    //sem ideias atéo momento
+    return true;
+}
 void Conta::imprimir()const{
-  cout<<"Nome: " + nomeDoUsuario<<endl;
-  cout<<"CPF: "<<CPF<<endl;
-  cout<<"Idade: "<<idade<<endl;
-  cout<<"Endereco: "<<getEnderecoDoUsuario()<<endl;
   cout<<"Saldo: "<<saldo<<endl;
 }
 Conta::~Conta(){
-
 }

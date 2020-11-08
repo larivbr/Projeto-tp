@@ -5,11 +5,11 @@ class Conta{
   private:
       Usuario user;
       int senha; //senha feita apenas de numeros
-      long int login // login apenas compostos por numeros
+      long int login; // login apenas compostos por numeros
       float saldo;
-      long int NumeroDoCartao;
+      long int numeroDoCartao;
   public:
-      Conta(const Usuario & = &{"0",0,0,{"0","0","0","0"}},const int&  = 0,const long int &= 0,const float & = 0,const long int &= 0);
+      Conta(Usuario = {"0",0,0,{"0","0","0","0"}},const int&  = 0,const long int & = 0,const float & = 0,const long int & = 0);
 
       void setUser(const Usuario &);
       void setSenha(const int&);
@@ -21,11 +21,11 @@ class Conta{
       int getSenha()const;
       long int getLogin()const;
       float getSaldo()const;
-      long int getNumero_Do_Cartao() const;
+      long int getNumeroDoCartao()const;
 
       bool sacar(float);
       bool depositar(float);
-      bool transferencia(float);
+      bool transferencia(float, int);
 
       void imprimir()const;
 
