@@ -2,12 +2,15 @@
 #ifndef _CONTA_H
 #define _CONTA_H
 class Conta{
+
   private:
+
       Usuario user;
       int senha; //senha feita apenas de numeros
       long int login; // login apenas compostos por numeros
       float saldo;
       long int numeroDoCartao;
+
   public:
       Conta(Usuario = {"0",0,0,{"0","0","0","0"}},const int&  = 0,const long int & = 0,const float & = 0,const long int & = 0);
 
@@ -28,9 +31,9 @@ class Conta{
       bool transferencia(float, int);
 
       void imprimir()const;
-
-      bool salvarDados();
-      bool cadastroUsuario();
+      //E necessário ser virtual?
+      // virtual bool salvarDados();
+      // virtual bool cadastroUsuario();
       ~Conta();
 };
 #endif //_Conta_H
