@@ -9,7 +9,7 @@ class ContaPoupanca:public Conta{
         int jurosExtra;
     public:
       
-      ContaPoupanca(Usuario = {"0",0,0,{"0","0","0","0"}},const int&  = 0,const long int & = 0,const float & = 0,const long int & = 0, const int &);
+      ContaPoupanca(const Usuario & = {"0",0,0,{"0","0","0","0"}},const int&  = 0,const long int & = 0,const float & = 0,const long int & = 0, const int &);
       bool cadastroUsuario(const ContaPoupanca&);
       void setJurosExtra(const int&);
       void JurosExtra();

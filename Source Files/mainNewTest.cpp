@@ -3,8 +3,11 @@
 using namespace std;
 #include "..\Resource Files\Conta.cpp"
 #include "..\Resource Files\Usuario.cpp"
+//Necessário implementação
+//#include "..\Resource Files\ContaPoupanca.cpp"
+//#include "..\Resource Files\ContaCorrente.cpp"
 int main(){
-  //Erro falta de implmentação do Usuario.cpp
+  //Erro, falta de implmentação do Usuario.cpp
   //Padrão de inicialização do construtor de Usuario
    Usuario usuarioAuxTeste(/*Nome*/"Valmir",/*Idade*/21,/*CPF*/15652145,/*Endereço*/{/*RUA*/"qualquer",/*CEP*/"1415454",/*cidade*/"qualquer",/*estado*/"qualquer"});
    Conta contaAuxTeste(usuarioAuxTeste,/*senha*/1231124,/*login possível saida*/32433,/*Saldo*/10000,/*Numero de cartao*/11313);
