@@ -15,8 +15,36 @@ void Conta::setUser(const Usuario& user){
 void Conta::setSenha(const int & senha){
   this->senha = senha;
 }
-void Conta::setLogin(const long int & login){
-  this->login = login;
+istream & operator>>(istream & in, Conta & contaAux){
+
+    Usuario userAux;
+    int senha;
+    // Erwerton sobrecarrega o método ">>" para suportar Usuario
+    cout<<"Informe seus dados"<<endl;
+    // cin>>userAux;
+    cout<<"Informe sua senha"<<endl;
+    cin>>senha;
+    contaAux.setUser(userAux);
+    contaAux.setSenha(senha);
+    contaAux.setSaldo(0);
+    //Ao criar a conta o usuarios iniciar o saldo sem dinheiro
+    return in;
+}
+bool Conta::signUp(){
+      // cin<<(this);
+      return true;
+}
+bool Conta::login(){
+    long int  CPF; int senha;
+    cout<<"Informe seu CPF:";
+    cin>>CPF;
+    cout<<"Senha: ";
+    cin>>senha;
+    //retorna verdadeiro se o login foi aceito
+    return verificarDadosDeLogin(CPF, senha);
+}
+bool Conta::logout(){
+  // sem ideias
 }
 void Conta::setNumeroDoCartao(const long int & numeroDoCartao){
   this->numeroDoCartao = numeroDoCartao;
@@ -38,13 +66,18 @@ string Conta::getEnderecoDoUsuario()const{
   return enderecoDoUsuario.rua + "," + enderecoDoUsuario.CEP + "," +enderecoDoUsuario.cidade +","+enderecoDoUsuario.estado;
 }
 */
-long int Conta::getLogin()const{
-  return login;
-}
 long int Conta::getNumeroDoCartao()const{
   return numeroDoCartao;
 }
-
+//Eu acredito que esta função deve ser implementada nas classes bases(ou seja, virtual) ou declarada com friend das duas subclasses pois
+//[É] necessário fazer uma busca nas listas de ContaPoupanca e ContaCorrente
+// O que vocês acham?
+// bool verificarDadosDeLogin(const long int& CPF, const int& senha)const{
+//   //
+//     if(not(CPF == this->User.getCPF() and senha == getSenha()))
+//         return false;
+//     return true;
+// }
 bool Conta::sacar(float valorDoSaque){
   if(valorDoSaque > saldo){
     return false;
@@ -59,14 +92,14 @@ bool Conta::depositar(float valorDoDeposito){
   saldo += valorDoDeposito;
   return true;
 }
-bool Conta::transferencia(float valorDaTransferencia, int contaDeDestino){
-    //implementar a verificação se a conta de destino existe
-    //sem ideias até o momento
-    return true;
-}
+// bool Conta::transferencia(float valorDaTransferencia, int contaDeDestino){
+//     //implementar a verificação se a conta de destino existe
+//     //sem ideias até o momento
+//     return true;
+// }
 void Conta::imprimir()const{
-  //Implemente a função imprimir da class Usuário
-  //Usuario::user.imprimir();
+  //subrecarrega o método "<<" para suportar Usuario
+  cout<<"Dados"<<endl<<Usuario<<endl;
   cout<<"Login: "<<login<<endl;
   cout<<"Cartao: "<<numeroDoCartao<<endl;
   cout<<"Saldo: "<<saldo<<endl;
