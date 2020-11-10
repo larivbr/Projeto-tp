@@ -1,6 +1,6 @@
 #include "..\Header Files\Conta.h"
 
-Conta::Conta(Usuario user,const int &senha,const long int & login,const float & saldo, const long int & numeroDoCartao){
+Conta::Conta(const Usuario &user,const int &senha,const long int & login,const float & saldo, const long int & numeroDoCartao){
   setUser(user);
   setSenha(senha);
   //setLogin(login);
@@ -53,8 +53,9 @@ void Conta::setNumeroDoCartao(const long int & numeroDoCartao){
 void Conta::setSaldo(const float & saldo){
   this->saldo = saldo;
 }
-
-
+float Conta::getSaldo()const{
+	return saldo;
+}
 Usuario Conta::getUser()const{
   return user;
 }

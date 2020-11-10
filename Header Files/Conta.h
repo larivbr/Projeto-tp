@@ -16,7 +16,7 @@ class Conta{
       long int numeroDoCartao;//possível mudança
 
   public:
-      Conta(Usuario = {"0",0,0,{"0","0","0","0"}},const int&  = 0,const long int & = 0,const float & = 0,const long int & = 0);
+      Conta(const Usuario & = {"0",0,0,{"0","0","0","0"}},const int&  = 0,const long int & = 0,const float & = 0,const long int & = 0);
 
       void setUser(const Usuario &);
       void setSenha(const int&);
@@ -28,7 +28,7 @@ class Conta{
       float getSaldo()const;
       long int getNumeroDoCartao()const;
 
-      //sobrecarrga do operador >> para ajudar nos cadastros
+      //sobrecarregar do operador >> para ajudar nos cadastros
       friend istream &operator>>(istream &, Conta &);
       bool signUp();
       bool login();
@@ -36,7 +36,7 @@ class Conta{
       bool logout();
       bool sacar(float);
       bool depositar(float);
-      //como o dinheiro pode ir de uma conta poupança ara uma conta corrente e vice-versa
+      //como o dinheiro pode ir de uma conta poupança para uma conta corrente e vice-versa
       //pode ser uma função friend das duas subclasses
       // bool transferencia(float, int);
 
