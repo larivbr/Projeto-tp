@@ -3,7 +3,7 @@
 Conta::Conta(Usuario user,const int &senha,const long int & login,const float & saldo, const long int & numeroDoCartao){
   setUser(user);
   setSenha(senha);
-  setLogin(login);
+  //setLogin(login);
   setNumeroDoCartao(numeroDoCartao);
   setSaldo(saldo);
 }
@@ -19,7 +19,7 @@ istream & operator>>(istream & in, Conta & contaAux){
 
     Usuario userAux;
     int senha;
-    // Erwerton sobrecarrega o método ">>" para suportar Usuario
+    // Erwerton sobrecarregar o método ">>" para suportar Usuario
     cout<<"Informe seus dados"<<endl;
     // cin>>userAux;
     cout<<"Informe sua senha"<<endl;
@@ -31,7 +31,7 @@ istream & operator>>(istream & in, Conta & contaAux){
     return in;
 }
 bool Conta::signUp(){
-      // cin<<(this);
+      cin>>(*this);
       return true;
 }
 bool Conta::login(){
@@ -41,10 +41,11 @@ bool Conta::login(){
     cout<<"Senha: ";
     cin>>senha;
     //retorna verdadeiro se o login foi aceito
-    return verificarDadosDeLogin(CPF, senha);
+    return /*verificarDadosDeLogin(CPF, senha)*/true;
 }
 bool Conta::logout(){
   // sem ideias
+  return true;
 }
 void Conta::setNumeroDoCartao(const long int & numeroDoCartao){
   this->numeroDoCartao = numeroDoCartao;
@@ -70,7 +71,7 @@ long int Conta::getNumeroDoCartao()const{
   return numeroDoCartao;
 }
 //Eu acredito que esta função deve ser implementada nas classes bases(ou seja, virtual) ou declarada com friend das duas subclasses pois
-//[É] necessário fazer uma busca nas listas de ContaPoupanca e ContaCorrente
+//[É] necessário fazer uma buscar nas listas de ContaPoupanca e ContaCorrente
 // O que vocês acham?
 // bool verificarDadosDeLogin(const long int& CPF, const int& senha)const{
 //   //
@@ -99,8 +100,8 @@ bool Conta::depositar(float valorDoDeposito){
 // }
 void Conta::imprimir()const{
   //subrecarrega o método "<<" para suportar Usuario
-  cout<<"Dados"<<endl<<Usuario<<endl;
-  cout<<"Login: "<<login<<endl;
+  //cout<<"Dados"<<endl<<Usuario<<endl;
+  //cout<<"Login: "<<login<<endl;
   cout<<"Cartao: "<<numeroDoCartao<<endl;
   cout<<"Saldo: "<<saldo<<endl;
 }

@@ -7,7 +7,7 @@ class Conta{
 
       Usuario user;
       int senha; //senha feita apenas de numeros
-      long int login; // login apenas compostos por numeros//possível mudança
+      long int logind; // login apenas compostos por numeros//possível mudança
       float saldo;
       //Eu acredito que esta função(verificarDadosDeLogin) deve ser implementada nas classes bases(ou seja, virtual), ou declarada com friend das duas subclasses, pois
       //é necessário fazer uma busca nas listas de ContaPoupanca e ContaCorrente
