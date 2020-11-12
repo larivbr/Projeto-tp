@@ -1,10 +1,8 @@
 #include "..\Header Files\Conta.h"
 
-Conta::Conta(const Usuario &user,const int &senha,const long int & login,const float & saldo, const long int & numeroDoCartao){
+Conta::Conta(const Usuario &user,const int &senha,const float & saldo){
   setUser(user);
   setSenha(senha);
-  //setLogin(login);
-  setNumeroDoCartao(numeroDoCartao);
   setSaldo(saldo);
 }
 
@@ -15,21 +13,7 @@ void Conta::setUser(const Usuario& user){
 void Conta::setSenha(const int & senha){
   this->senha = senha;
 }
-istream & operator>>(istream & in, Conta & contaAux){
 
-    Usuario userAux;
-    int senha;
-    // Erwerton sobrecarregar o método ">>" para suportar Usuario
-    cout<<"Informe seus dados"<<endl;
-    // cin>>userAux;
-    cout<<"Informe sua senha"<<endl;
-    cin>>senha;
-    contaAux.setUser(userAux);
-    contaAux.setSenha(senha);
-    contaAux.setSaldo(0);
-    //Ao criar a conta o usuarios iniciar o saldo sem dinheiro
-    return in;
-}
 bool Conta::signUp(){
       cin>>(*this);
       return true;
@@ -46,9 +30,6 @@ bool Conta::login(){
 bool Conta::logout(){
   // sem ideias
   return true;
-}
-void Conta::setNumeroDoCartao(const long int & numeroDoCartao){
-  this->numeroDoCartao = numeroDoCartao;
 }
 void Conta::setSaldo(const float & saldo){
   this->saldo = saldo;
@@ -68,9 +49,6 @@ string Conta::getEnderecoDoUsuario()const{
   return enderecoDoUsuario.rua + "," + enderecoDoUsuario.CEP + "," +enderecoDoUsuario.cidade +","+enderecoDoUsuario.estado;
 }
 */
-long int Conta::getNumeroDoCartao()const{
-  return numeroDoCartao;
-}
 //Eu acredito que esta função deve ser implementada nas classes bases(ou seja, virtual) ou declarada com friend das duas subclasses pois
 //[É] necessário fazer uma buscar nas listas de ContaPoupanca e ContaCorrente
 // O que vocês acham?
@@ -99,12 +77,6 @@ bool Conta::depositar(float valorDoDeposito){
 //     //sem ideias até o momento
 //     return true;
 // }
-void Conta::imprimir()const{
-  //subrecarrega o método "<<" para suportar Usuario
-  //cout<<"Dados"<<endl<<Usuario<<endl;
-  //cout<<"Login: "<<login<<endl;
-  cout<<"Cartao: "<<numeroDoCartao<<endl;
-  cout<<"Saldo: "<<saldo<<endl;
-}
+
 Conta::~Conta(){
 }

@@ -1,7 +1,7 @@
 #include "ContaPoupanca.h"
 
 
-ContaPoupanca::ContaPoupanca(const Usuario &,const float & saldo, const int & jurosExtra{
+ContaPoupanca::ContaPoupanca(const Usuario &user,const int &senha,const long int & login,const float & saldo, const long int & numeroDoCartao){
   setUser(user);
   setSenha(senha);
   setLogin(login);
@@ -27,3 +27,5 @@ void ContaPoupanca::JurosExtra(float jurosExtra)
 {
     jurosExtra -= saldo;
 }
+
+
