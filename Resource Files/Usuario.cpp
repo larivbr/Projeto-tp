@@ -14,16 +14,16 @@ int Usuario::getIdade() const{
 	return idade;
 }
 
-void Usuario::setCPF(long int & CPF){
+void Usuario::setCPF(const long int & CPF){
 	this->CPF=CPF;
 }
 
-long int Usuario:;getCPF() const{
+long int Usuario::getCPF() const{
 	return CPF;
 }
 
-void Usuario::setEnderecoDoUsuario(const Endereco & end){
-	enderecoDoUsuario=end;
+void Usuario::setEnderecoDoUsuario(const Endereco & enderecoDoUsuario){
+	this->enderecoDoUsuario=enderecoDoUsuario;
 }
 
 Endereco Usuario::getEnderecoDoUsuario() const{
@@ -39,4 +39,3 @@ string Usuario::getNomeDoUsuario() const{
 }
 
 
-      

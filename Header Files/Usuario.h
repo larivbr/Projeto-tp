@@ -22,7 +22,7 @@ class Usuario{
         string getNomeDoUsuario()const;
         long int getCPF()const;
         int getIdade()const;
-        string getEnderecoDoUsuario()const;
+        Endereco getEnderecoDoUsuario()const;
 
 };
 
