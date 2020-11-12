@@ -37,5 +37,31 @@ void Usuario::setNomeDoUsuario(const string & nomeDoUsuario){
 string Usuario::getNomeDoUsuario() const{
 	return nomeDoUsuario;
 }
-
-
+istream & operator<<(istream & is,Usuario & auxUsuario){
+	cout<<"Nome: "<<auxUsuario.getNomeDoUsuario();
+	cout<<"Idade: "<<auxUsuario.getIdade();
+	cout<<"CPF: "<<auxUsuario.getCPF();
+	cout<<"Rua: "<<auxUsuario.getEnderecoDoUsuario().rua;
+	cout<<"Cep: "<<auxUsuario.getEnderecoDoUsuario().CEP;
+	cout<<"Cidade: "<<auxUsuario.getEnderecoDoUsuario().cidade;
+	cout<<"Estado: "<<auxUsuario.getEnderecoDoUsuario().estado;
+	return is;
+}
+ostream & operator>>(ostream & os,Usuario & auxUsuario){
+	string nome;
+	int idade;
+	long int CPF;
+	Endereco endereco;
+	cout<<"Nome: ";cin>>nome;
+	cout<<"Idade: ";cin>>idade;
+	cout<<"CPF: ";cin>>CPF;
+	cout<<"Rua: ";cin>>endereco.rua;
+	cout<<"Cep: ";cin>>endereco.CEP;
+	cout<<"Cidade: ";cin>>endereco.cidade;
+	cout<<"Estado: ";cin>>endereco.estado;
+	auxUsuario.setNomeDoUsuario(nome);
+	auxUsuario.setIdade(idade);
+	auxUsuario.setCPF(CPF);
+	auxUsuario.setEnderecoDoUsuario(endereco);
+	return os;
+}

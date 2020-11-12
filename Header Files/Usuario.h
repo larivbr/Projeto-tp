@@ -23,6 +23,8 @@ class Usuario{
         long int getCPF()const;
         int getIdade()const;
         Endereco getEnderecoDoUsuario()const;
+        friend istream & operator>>(istream &, Usuario &);
+        friend ostream & operator<<(ostream &, Usuario &);
 
 };
 
