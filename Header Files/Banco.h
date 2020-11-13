@@ -7,19 +7,19 @@ template <class T>
 class Banco:public ContaPoupanca, public ContaCorrente{
 private:
       vector<T>listaDeContas;
-      bool verificarLogin(int, int);
-      int encontarConta(int);//Ok
+      bool verificarLogin(long int, int);
+      int encontarConta(long int);//Ok
       bool carregarDados();
       fstream arq;
     public:
       Banco();
-      bool login(int,int);
+      bool login(long int,int);
       bool signUp(T);//OK
       bool signOut();//
-      bool deletarContas(int, int);
-      bool modificarDados(int ,int );
+      bool deletarContas(long int, int);
+      bool modificarDados(long int ,int );
       bool ordenarLista();
-      bool transferencia(int,int,int, float);
+      bool transferencia(long int,int,long int, float);
       bool salvarDados();//OK
       void imprimir();//ok
       int menu();

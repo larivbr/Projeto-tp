@@ -1,18 +1,19 @@
 #include "..\Header Files\Banco.h"
 template <class T>
 Banco<T>::Banco(){
-    arq.open("DadosBanco.bin",ios::out|ios::in);
-    // if(not(arq.is_open())){
-    //    return;
-    // }
-    //carregarDados();
+    arq.open("DadosBanco.bin",ios::in);
+    if(not(arq.is_open())){
+       return;
+    }
+    carregarDados();
+    arq.close();
 }
 template <class T>
-bool Banco<T>::login(int CPF, int senha){
+bool Banco<T>::login(long int CPF, int senha){
   return verificarLogin(CPF, senha);
 }
 template <class T>
-bool Banco<T>::verificarLogin(int CPF, int senha){
+bool Banco<T>::verificarLogin(long int CPF, int senha){
     int idConta(encontarConta(CPF));
     if(listaDeContas[idConta-2].getSenha() == senha){
       return true;
@@ -30,7 +31,7 @@ bool Banco<T>::signOut(){
   return 0;
 }
 template <class T>
-bool Banco<T>::deletarContas(int CPF,int senha){
+bool Banco<T>::deletarContas(long int CPF,int senha){
   if(not(verificarLogin(CPF,senha)))
     return false;
 
@@ -42,7 +43,7 @@ bool Banco<T>::deletarContas(int CPF,int senha){
   return false;
 }
 template <class T>
-bool Banco<T>::modificarDados(int CPF, int senha){
+bool Banco<T>::modificarDados(long int CPF, int senha){
   if(not(verificarLogin(CPF,senha)))
     return false;
   int idConta(encontarConta(CPF)-1);
@@ -55,7 +56,7 @@ bool Banco<T>::modificarDados(int CPF, int senha){
   return false;
 }
 template <class T>
-int Banco<T>::encontarConta(int CPF){
+int Banco<T>::encontarConta(long int CPF){
   for(int i(0);i < listaDeContas.size();i++){
     if(listaDeContas[i].getUser().getCPF() == CPF){
         return i+2;
@@ -71,7 +72,7 @@ bool Banco<T>::ordenarLista(){
 }
 //
 template <class T>
-bool Banco<T>::transferencia(int CPF1, int senha, int CPF2, float valor){
+bool Banco<T>::transferencia(long int CPF1, int senha, long int CPF2, float valor){
     if(not(verificarLogin(CPF1,senha)))
       return false;
     int idConta1(encontarConta(CPF1));
@@ -86,10 +87,12 @@ bool Banco<T>::transferencia(int CPF1, int senha, int CPF2, float valor){
 
 template <class T>
 bool Banco<T>::salvarDados(){
-  arq.seekg(0);
-  for(int i = 0; i < listaDeContas.size();i++){
+  //
+  arq.open("DadosBanco.bin");
+  for(int i(0); i < listaDeContas.size();i++){
     arq.write(reinterpret_cast<char *>(&listaDeContas[i]),sizeof(T));
   }
+  arq.close();
   return true;
 }
 
@@ -124,6 +127,8 @@ int Banco<T>::menu(){
   cout<<setw(40)<<" "<<endl;
   cout<<"[1]Criar Conta"<<endl;
   cout<<"[2]Entrar"<<endl;
+  cout<<"[3]Sair"<<endl;
+
   cout<<setw(40)<<" "<<endl;
   cin>>op;
   return op;
