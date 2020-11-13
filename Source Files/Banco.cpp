@@ -15,7 +15,8 @@ int main(){
     Usuario userAux;
     Conta contaAux;
     long int CPF;
-    int senha;
+    int senha,loopSistema;
+    cout<<sizeof(p)<<endl;
     // p.menu();
     // // Usuario usuarioAuxTeste1(/*Nome*/"Valmir F",/*Idade*/21,/*CPF*/2,/*Endereço*/{/*RUA*/"qualquerRua",/*CEP*/"1415454CEP",/*cidade*/"qualquerCidade",/*estado*/"qualquerEstado"});
     // // Usuario usuarioAuxTeste2(/*Nome*/"Erwerton",/*Idade*/18,/*CPF*/2,/*Endereço*/{/*RUA*/"qualquerRua",/*CEP*/"1415454CEP",/*cidade*/"qualquerCidade",/*estado*/"qualquerEstado"});
@@ -55,13 +56,21 @@ int main(){
         case 2:
           cout<<"Informe seu CPF:";cin>>CPF;
           cout<<"Informe sua senha:";cin>>senha;
-          int loopSistema(p.login(CPF,senha));
-          cout<<(loopSistema?" ": "senha invalida")<<endl;
-          while(loopSistema){
-            cout<<"Loop "<<endl;
-          }
-          break;
+          cout<<"Teste"<<endl;
+          loopSistema= p.login(CPF,senha);
+          //cout<<(loopSistema?" ": "senha invalida")<<endl;
+          // while(loopSistema){
+          //   cout<<"Loop "<<endl;
+          //
+          // }
+          cout<<"Teste"<<endl;
 
+          break;
+      case 3:
+        cout<<"Case 3"<<endl;
+          p.signOut();
+          return 0;
+          break;
       }
     }
 

@@ -3,9 +3,11 @@ template <class T>
 Banco<T>::Banco(){
     arq.open("DadosBanco.bin",ios::in);
     if(not(arq.is_open())){
+      cout<<"Arquivo inexistente"<<endl;
        return;
     }
     carregarDados();
+    imprimir();
     arq.close();
 }
 template <class T>
@@ -64,7 +66,6 @@ int Banco<T>::encontarConta(long int CPF){
   }
     return 1;
 }
-
 template <class T>
 bool Banco<T>::ordenarLista(){
   sort(listaDeContas.begin(),listaDeContas.end());
@@ -87,10 +88,14 @@ bool Banco<T>::transferencia(long int CPF1, int senha, long int CPF2, float valo
 
 template <class T>
 bool Banco<T>::salvarDados(){
+  cout<<"Salvando..."<<endl;
   //
-  arq.open("DadosBanco.bin");
+  arq.open("DadosBanco.bin",ios::out);
+  if(!arq.is_open())
+    cout<<"Falhar ao abrir"<<endl;
   for(int i(0); i < listaDeContas.size();i++){
-    arq.write(reinterpret_cast<char *>(&listaDeContas[i]),sizeof(T));
+    T auxTemp = listaDeContas[i];
+    arq.write(reinterpret_cast<char *>(&auxTemp),sizeof(T));
   }
   arq.close();
   return true;
@@ -98,10 +103,15 @@ bool Banco<T>::salvarDados(){
 
 template <class T>
 bool Banco<T>::carregarDados(){
+  //cout<<"Carregando"<<endl;
+  arq.open("DadosBanco.bin",ios::in);
   int i(0);
-  while(arq.read(reinterpret_cast<char *>(&listaDeContas[i]),sizeof(T))){
-    i++;
+  T auxTemp ;
+  while(arq.read(reinterpret_cast<char *>(&auxTemp),sizeof(T))){
+  //  cout<<" I"<<i++<<endl;
+    listaDeContas[i] = auxTemp;
   }
+  arq.close();
   return true;
 }
 template <class T>
