@@ -10,7 +10,6 @@ private:
       bool verificarLogin(long int, int);
       int encontarConta(long int);//Ok
       bool carregarDados();
-      fstream arq;
     public:
       Banco();
       bool login(long int,int);

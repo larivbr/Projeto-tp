@@ -57,7 +57,9 @@ int main(){
           cout<<"Informe seu CPF:";cin>>CPF;
           cout<<"Informe sua senha:";cin>>senha;
           cout<<"Teste"<<endl;
-          loopSistema= p.login(CPF,senha);
+          if(loopSistema= p.login(CPF,senha)){
+                p.imprimir();
+          }
           //cout<<(loopSistema?" ": "senha invalida")<<endl;
           // while(loopSistema){
           //   cout<<"Loop "<<endl;

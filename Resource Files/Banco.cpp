@@ -1,14 +1,8 @@
 #include "..\Header Files\Banco.h"
 template <class T>
 Banco<T>::Banco(){
-    arq.open("DadosBanco.bin",ios::in);
-    if(not(arq.is_open())){
-      cout<<"Arquivo inexistente"<<endl;
-       return;
-    }
+
     carregarDados();
-    imprimir();
-    arq.close();
 }
 template <class T>
 bool Banco<T>::login(long int CPF, int senha){
@@ -90,13 +84,15 @@ template <class T>
 bool Banco<T>::salvarDados(){
   cout<<"Salvando..."<<endl;
   //
-  arq.open("DadosBanco.bin",ios::out);
+  fstream arq("DadosBanco.txt",ios::out);
   if(!arq.is_open())
     cout<<"Falhar ao abrir"<<endl;
-  for(int i(0); i < listaDeContas.size();i++){
-    T auxTemp = listaDeContas[i];
-    arq.write(reinterpret_cast<char *>(&auxTemp),sizeof(T));
-  }
+    for(int i = 0; i < listaDeContas.size();i++){
+      T auxTemp = listaDeContas[i];
+      cout<<listaDeContas[i].getUser().getNomeDoUsuario()<<endl;
+      arq.write(reinterpret_cast<char *>(&auxTemp),sizeof(auxTemp));
+    }
+  
   arq.close();
   return true;
 }
@@ -104,29 +100,34 @@ bool Banco<T>::salvarDados(){
 template <class T>
 bool Banco<T>::carregarDados(){
   //cout<<"Carregando"<<endl;
-  arq.open("DadosBanco.bin",ios::in);
+  fstream arq("DadosBanco.txt",ios::in);
   int i(0);
   T auxTemp ;
-  while(arq.read(reinterpret_cast<char *>(&auxTemp),sizeof(T))){
-  //  cout<<" I"<<i++<<endl;
-    listaDeContas[i] = auxTemp;
-  }
+  if(!arq.is_open())
+    return 0;
+  while(arq.read(reinterpret_cast<char *>(&auxTemp),sizeof(auxTemp)))
+    listaDeContas.push_back(auxTemp);
   arq.close();
   return true;
 }
 template <class T>
 void Banco<T>::imprimir(){
   for(int i(0); i < listaDeContas.size(); i++){
+    cout<<"CONTA "<<i<<endl<<endl;
     cout<<"Nome:"<<listaDeContas[i].getUser().getNomeDoUsuario()<<endl;
     cout<<"Idade: "<<listaDeContas[i].getUser().getIdade()<<endl;
     cout<<"CPF: "<<listaDeContas[i].getUser().getCPF()<<endl;
     cout<<"Saldo: "<<listaDeContas[i].getSaldo()<<endl;
     cout<<"Senha: "<<listaDeContas[i].getSenha()<<endl;
+    	cout<<"Rua: "<<listaDeContas[i].getUser().getEnderecoDoUsuario().rua;
+	cout<<"Cep: "<<listaDeContas[i].getUser().getEnderecoDoUsuario().CEP;
+	cout<<"Cidade: "<<listaDeContas[i].getUser().getEnderecoDoUsuario().cidade;
+	cout<<"Estado: "<<listaDeContas[i].getUser().getEnderecoDoUsuario().estado;
   }
 }
 template <class T>
 Banco<T>::~Banco(){
-  arq.close();
+
 }
 template <class T>
 int Banco<T>::menu(){
