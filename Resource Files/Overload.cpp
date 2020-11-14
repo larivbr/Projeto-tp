@@ -4,10 +4,7 @@ ostream & operator<<(ostream & os,Usuario & auxUsuario){
 	cout<<"Nome: "<<auxUsuario.getNomeDoUsuario();
 	cout<<"Idade: "<<auxUsuario.getIdade();
 	cout<<"CPF: "<<auxUsuario.getCPF();
-	cout<<"Rua: "<<auxUsuario.getEnderecoDoUsuario().rua;
-	cout<<"Cep: "<<auxUsuario.getEnderecoDoUsuario().CEP;
-	cout<<"Cidade: "<<auxUsuario.getEnderecoDoUsuario().cidade;
-	cout<<"Estado: "<<auxUsuario.getEnderecoDoUsuario().estado;
+	cout<<"Endereco: "<<auxUsuario.getEnderecoDoUsuario();
 	return os;
 }
 istream & operator>>(istream & is,Usuario & auxUsuario){
@@ -34,7 +31,6 @@ istream & operator>>(istream & in, Conta & contaAux){
     int senha;
     cout<<"senha: ";cin>>senha;
     contaAux.setSenha(senha);
-		//Ao criar a conta o usuarios iniciar o saldo sem dinheiro
     contaAux.setSaldo(0);
     return in;
 }

@@ -1,8 +1,33 @@
 #include "..\Header Files\Banco.h"
 template <class T>
 Banco<T>::Banco(){
+  carregarDados();
+}
+template <class T>
+bool  Banco<T>::salvarDados(){
+  fstream arq("../BancoDeDados.bin",ios::out);
+  if(!arq.is_open()){
+    return false;
+  }
+  for(int i = 0; i < listaDeContas.size(); i++){
+    auxConta = listaDeContas[i];
+    arq.write(reinterpret_cast<char *>(&auxConta),sizeof(auxConta));
+  }
+    arq.close();
+    return true;
+}
 
-    carregarDados();
+template <class T>
+bool Banco<T>::carregarDados(){
+  fstream arq("../BancoDeDados.bin",ios::in);
+  if(!arq.is_open()){
+    return false;
+  }
+  while(arq.read(reinterpret_cast<char *>(&auxConta),sizeof(auxConta))){
+    listaDeContas.push_back(auxConta);
+  }
+  arq.close();
+  return true;
 }
 template <class T>
 bool Banco<T>::login(long int CPF, int senha){
@@ -10,10 +35,11 @@ bool Banco<T>::login(long int CPF, int senha){
 }
 template <class T>
 bool Banco<T>::verificarLogin(long int CPF, int senha){
-    int idConta(encontarConta(CPF));
-    if(listaDeContas[idConta-2].getSenha() == senha){
-      return true;
-    }
+    int idConta = encontarConta(CPF);
+    if(idConta)
+        if(listaDeContas[idConta-2].getSenha() == senha){
+          return true;
+        }
     return false;
 }
 template <class T>
@@ -30,27 +56,26 @@ template <class T>
 bool Banco<T>::deletarContas(long int CPF,int senha){
   if(not(verificarLogin(CPF,senha)))
     return false;
-
-    int idConta(encontarConta(CPF));
-    if(idConta){
-      listaDeContas.erase(idConta,idConta+1);
+  int idConta(encontarConta(CPF));
+  if(idConta){
+      //listaDeContas.erase(listaDeContas.begin(),listaDeContas.end());
+      cout<<"Não conseguir usar o erase"<<endl;
       return true;
-    }
+  }
   return false;
 }
 template <class T>
 bool Banco<T>::modificarDados(long int CPF, int senha){
-  if(not(verificarLogin(CPF,senha)))
-    return false;
   int idConta(encontarConta(CPF)-1);
   if(idConta){
     //
-    //Preciso de um método para midificar os atributos da conta
+    //Preciso de um método para modificar os atributos da conta
     //
     return true;
   }
   return false;
 }
+//Buscar por cadastro no sistema de gerenciamento
 template <class T>
 int Banco<T>::encontarConta(long int CPF){
   for(int i(0);i < listaDeContas.size();i++){
@@ -58,7 +83,7 @@ int Banco<T>::encontarConta(long int CPF){
         return i+2;
     }
   }
-    return 1;
+  return 0;
 }
 template <class T>
 bool Banco<T>::ordenarLista(){
@@ -81,36 +106,6 @@ bool Banco<T>::transferencia(long int CPF1, int senha, long int CPF2, float valo
 }
 
 template <class T>
-bool Banco<T>::salvarDados(){
-  cout<<"Salvando..."<<endl;
-  //
-  fstream arq("DadosBanco.txt",ios::out);
-  if(!arq.is_open())
-    cout<<"Falhar ao abrir"<<endl;
-    for(int i = 0; i < listaDeContas.size();i++){
-      T auxTemp = listaDeContas[i];
-      cout<<listaDeContas[i].getUser().getNomeDoUsuario()<<endl;
-      arq.write(reinterpret_cast<char *>(&auxTemp),sizeof(auxTemp));
-    }
-  
-  arq.close();
-  return true;
-}
-
-template <class T>
-bool Banco<T>::carregarDados(){
-  //cout<<"Carregando"<<endl;
-  fstream arq("DadosBanco.txt",ios::in);
-  int i(0);
-  T auxTemp ;
-  if(!arq.is_open())
-    return 0;
-  while(arq.read(reinterpret_cast<char *>(&auxTemp),sizeof(auxTemp)))
-    listaDeContas.push_back(auxTemp);
-  arq.close();
-  return true;
-}
-template <class T>
 void Banco<T>::imprimir(){
   for(int i(0); i < listaDeContas.size(); i++){
     cout<<"CONTA "<<i<<endl<<endl;
@@ -119,15 +114,8 @@ void Banco<T>::imprimir(){
     cout<<"CPF: "<<listaDeContas[i].getUser().getCPF()<<endl;
     cout<<"Saldo: "<<listaDeContas[i].getSaldo()<<endl;
     cout<<"Senha: "<<listaDeContas[i].getSenha()<<endl;
-    	cout<<"Rua: "<<listaDeContas[i].getUser().getEnderecoDoUsuario().rua;
-	cout<<"Cep: "<<listaDeContas[i].getUser().getEnderecoDoUsuario().CEP;
-	cout<<"Cidade: "<<listaDeContas[i].getUser().getEnderecoDoUsuario().cidade;
-	cout<<"Estado: "<<listaDeContas[i].getUser().getEnderecoDoUsuario().estado;
+    cout<<"endereco: "<<listaDeContas[i].getUser().getEnderecoDoUsuario()<<endl;
   }
-}
-template <class T>
-Banco<T>::~Banco(){
-
 }
 template <class T>
 int Banco<T>::menu(){
@@ -139,8 +127,11 @@ int Banco<T>::menu(){
   cout<<"[1]Criar Conta"<<endl;
   cout<<"[2]Entrar"<<endl;
   cout<<"[3]Sair"<<endl;
-
   cout<<setw(40)<<" "<<endl;
   cin>>op;
   return op;
+}
+template <class T>
+Banco<T>::~Banco(){
+
 }

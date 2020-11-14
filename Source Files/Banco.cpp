@@ -16,7 +16,6 @@ int main(){
     Conta contaAux;
     long int CPF;
     int senha,loopSistema;
-    cout<<sizeof(p)<<endl;
     // p.menu();
     // // Usuario usuarioAuxTeste1(/*Nome*/"Valmir F",/*Idade*/21,/*CPF*/2,/*Endereço*/{/*RUA*/"qualquerRua",/*CEP*/"1415454CEP",/*cidade*/"qualquerCidade",/*estado*/"qualquerEstado"});
     // // Usuario usuarioAuxTeste2(/*Nome*/"Erwerton",/*Idade*/18,/*CPF*/2,/*Endereço*/{/*RUA*/"qualquerRua",/*CEP*/"1415454CEP",/*cidade*/"qualquerCidade",/*estado*/"qualquerEstado"});
@@ -56,17 +55,25 @@ int main(){
         case 2:
           cout<<"Informe seu CPF:";cin>>CPF;
           cout<<"Informe sua senha:";cin>>senha;
-          cout<<"Teste"<<endl;
-          if(loopSistema= p.login(CPF,senha)){
-                p.imprimir();
+          loopSistema= p.login(CPF,senha);
+          cout<<(loopSistema?" ": "senha invalida")<<endl;
+          p.imprimir();
+          if(loopSistema){
+              cout<<"[4]Deletar"<<endl;
+              cout<<"[5]sair"<<endl;
+              cin>>op;
+              switch (op) {
+                  case 4:
+                      cout<<"Informe seu CPF:";cin>>CPF;
+                      cout<<"Informe sua senha:";cin>>senha;
+                      cout<<"deletando"<<endl;
+                      if(p.login(CPF,senha)){
+                          p.deletarContas(CPF,senha);
+                          cout<<"Login aceito";
+                      }
+                      break;
+              }
           }
-          //cout<<(loopSistema?" ": "senha invalida")<<endl;
-          // while(loopSistema){
-          //   cout<<"Loop "<<endl;
-          //
-          // }
-          cout<<"Teste"<<endl;
-
           break;
       case 3:
         cout<<"Case 3"<<endl;

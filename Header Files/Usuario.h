@@ -22,7 +22,7 @@ class Usuario{
         string getNomeDoUsuario()const;
         long int getCPF()const;
         int getIdade()const;
-        Endereco getEnderecoDoUsuario()const;
+        string getEnderecoDoUsuario()const;
         friend istream & operator>>(istream &, Usuario &);
         friend ostream & operator<<(ostream &, Usuario &);
 

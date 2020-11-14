@@ -26,8 +26,8 @@ void Usuario::setEnderecoDoUsuario(const Endereco & enderecoDoUsuario){
 	this->enderecoDoUsuario=enderecoDoUsuario;
 }
 
-Endereco Usuario::getEnderecoDoUsuario() const{
-	return enderecoDoUsuario;
+string Usuario::getEnderecoDoUsuario() const{
+	return enderecoDoUsuario.rua +","+enderecoDoUsuario.CEP+","+enderecoDoUsuario.cidade+","+enderecoDoUsuario.estado+".";
 }
 
 void Usuario::setNomeDoUsuario(const string & nomeDoUsuario){
@@ -41,10 +41,8 @@ istream & operator<<(istream & is,Usuario & auxUsuario){
 	cout<<"Nome: "<<auxUsuario.getNomeDoUsuario();
 	cout<<"Idade: "<<auxUsuario.getIdade();
 	cout<<"CPF: "<<auxUsuario.getCPF();
-	cout<<"Rua: "<<auxUsuario.getEnderecoDoUsuario().rua;
-	cout<<"Cep: "<<auxUsuario.getEnderecoDoUsuario().CEP;
-	cout<<"Cidade: "<<auxUsuario.getEnderecoDoUsuario().cidade;
-	cout<<"Estado: "<<auxUsuario.getEnderecoDoUsuario().estado;
+	cout<<"Endereco: "<<auxUsuario.getEnderecoDoUsuario();
+
 	return is;
 }
 ostream & operator>>(ostream & os,Usuario & auxUsuario){
