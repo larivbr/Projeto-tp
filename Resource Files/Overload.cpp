@@ -26,6 +26,13 @@ istream & operator>>(istream & is,Usuario & auxUsuario){
 	auxUsuario.setEnderecoDoUsuario(endereco);
 	return is;
 }
+ostream & operator<<(ostream & os,Conta & auxUsuario){
+	cout<<"Nome: "<<auxUsuario.getUser().getNomeDoUsuario()<<endl;
+	cout<<"Idade: "<<auxUsuario.getUser().getIdade()<<endl;
+	cout<<"CPF: "<<auxUsuario.getUser().getCPF()<<endl;
+	cout<<"Endereco: "<<auxUsuario.getUser().getEnderecoDoUsuario()<<endl;
+	return os;
+}
 
 istream & operator>>(istream & in, Conta & contaAux){
     int senha;

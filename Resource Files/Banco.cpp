@@ -118,20 +118,6 @@ void Banco<T>::imprimir(){
   }
 }
 template <class T>
-int Banco<T>::menu(){
-  int op;
-  cout.fill('_');
-  cout<<setw(40)<<" "<<endl;
-  cout<<"Bem vindo"<<endl;
-  cout<<setw(40)<<" "<<endl;
-  cout<<"[1]Criar Conta"<<endl;
-  cout<<"[2]Entrar"<<endl;
-  cout<<"[3]Sair"<<endl;
-  cout<<setw(40)<<" "<<endl;
-  cin>>op;
-  return op;
-}
-template <class T>
 Banco<T>::~Banco(){
 
 }
