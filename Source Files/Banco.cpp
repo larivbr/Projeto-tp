@@ -38,13 +38,13 @@ int main(){
           cin>>op;
           switch (op) {
             case 1:
-              //Lembrar de substiuir o p
+              //Lembrar de substuir o p
               cout<<"Insirar os dados da sua conta Poupanca"<<endl;
               gerenciadorDeCadastros(p);
               cout<<"Conta criada!"<<endl;
               break;
             case 2:
-              //Lembrar de substiuir o p
+              //Lembrar de substuir o p
               cout<<"Insira os dados da sua conta Corrente"<<endl;
               gerenciadorDeCadastros(p);
               cout<<"Conta criada!"<<endl;
@@ -76,12 +76,10 @@ int main(){
                       //cout<<"Deposito "<<(p.depositar(valorDeposito)?"realizado!":" recusado!")<<endl;
                       break;
                   case 3:
-                      cout<<"Ideia nao definiada"<<endl;
+                      cout<<"Ideia nao definida"<<endl;
                       break;
                   case 4:
-                      cout<<"Ideia nao definiada"<<endl;
-                      cout<<"Informe seu CPF:";cin>>CPF;
-                      cout<<"Informe sua senha:";cin>>senha;
+                      cout<<"Ideia nao definida"<<endl;
                       if(p.login(CPF,senha)){
                           cout<<"deletando"<<endl;
                           p.deletarContas(CPF,senha);
@@ -89,7 +87,7 @@ int main(){
                       }
                       break;
                   case 5:
-                      p.imprimir();
+                      p.consultarDados(CPF,senha);
                       break;
                   case 6:
                       cout<<"Ideia nao definiada"<<endl;

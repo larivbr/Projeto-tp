@@ -106,16 +106,13 @@ bool Banco<T>::transferencia(long int CPF1, int senha, long int CPF2, float valo
 }
 
 template <class T>
-void Banco<T>::imprimir(){
-  for(int i(0); i < listaDeContas.size(); i++){
-    cout<<"CONTA "<<i<<endl<<endl;
-    cout<<"Nome:"<<listaDeContas[i].getUser().getNomeDoUsuario()<<endl;
-    cout<<"Idade: "<<listaDeContas[i].getUser().getIdade()<<endl;
-    cout<<"CPF: "<<listaDeContas[i].getUser().getCPF()<<endl;
-    cout<<"Saldo: "<<listaDeContas[i].getSaldo()<<endl;
-    cout<<"Senha: "<<listaDeContas[i].getSenha()<<endl;
-    cout<<"endereco: "<<listaDeContas[i].getUser().getEnderecoDoUsuario()<<endl;
-  }
+void Banco<T>::consultarDados(const long int & CPF, const int & senha){
+    int idConta=(encontarConta(CPF))-2;
+    cout<<"Nome:"<<listaDeContas[idConta].getUser().getNomeDoUsuario()<<endl;
+    cout<<"Idade: "<<listaDeContas[idConta].getUser().getIdade()<<endl;
+    cout<<"CPF: "<<listaDeContas[idConta].getUser().getCPF()<<endl;
+    cout<<"Saldo: "<<listaDeContas[idConta].getSaldo()<<endl;
+    cout<<"endereco: "<<listaDeContas[idConta].getUser().getEnderecoDoUsuario()<<endl;
 }
 template <class T>
 Banco<T>::~Banco(){

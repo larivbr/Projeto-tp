@@ -22,7 +22,7 @@ class Banco:public ContaPoupanca, public ContaCorrente{
       bool ordenarLista();
       bool transferencia(long int,int,long int, float);
       bool salvarDados();//OK
-      void imprimir();//ok
+      void consultarDados(const long int &, const int &);//ok
       int menu();//Ok
       ~Banco();
 };
